@@ -15,7 +15,7 @@ export class GptService {
     });
   }
 
-  async createPreset(user_input: string, hostApplication: HostApplication) {
+  async createPreset(user_input: string, host_app: HostApplication) {
     const newState: ChatCompletionMessageParam = {
       role: 'user',
       content: user_input,
@@ -23,7 +23,7 @@ export class GptService {
 
     let messages = [];
 
-    switch (hostApplication) {
+    switch (host_app) {
       case 'Premiere Pro':
         messages = [...PREMIERE_PRO].concat(newState);
         break;
@@ -34,6 +34,8 @@ export class GptService {
         messages = [...PREMIERE_PRO].concat(newState);
         break;
     }
+
+    console.log(messages);
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
       messages: messages,
@@ -44,7 +46,7 @@ export class GptService {
       presence_penalty: 0,
     });
     const prompt = response.choices[0].message.content;
-    return JSON.parse(prompt);
+    return prompt;
   }
 
   getHello() {
