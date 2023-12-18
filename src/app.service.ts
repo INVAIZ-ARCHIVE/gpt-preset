@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 
@@ -40,9 +41,9 @@ const messages: ChatCompletionMessageParam[] = [
 @Injectable()
 export class AppService {
   private readonly openai: OpenAI;
-  constructor() {
+  constructor(private readonly configService: ConfigService) {
     this.openai = new OpenAI({
-      apiKey: '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',
+      apiKey: this.configService.get('OPENAI_API_KEY'),
     });
   }
 
