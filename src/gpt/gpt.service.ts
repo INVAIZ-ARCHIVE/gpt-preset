@@ -3,8 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { PREMIERE_PRO } from '../constants/message';
-
-type HostApplication = 'Premiere Pro' | 'Photoshop' | 'Lightroom Classic';
+import { HostApplication } from './dto/create-preset.dto';
 
 @Injectable()
 export class GptService {
@@ -15,15 +14,15 @@ export class GptService {
     });
   }
 
-  async createPreset(user_input: string, host_app: HostApplication) {
+  async createPreset(content: string, hostApp: HostApplication) {
     const newState: ChatCompletionMessageParam = {
       role: 'user',
-      content: user_input,
+      content: content,
     };
 
     let messages = [];
 
-    switch (host_app) {
+    switch (hostApp) {
       case 'Premiere Pro':
         messages = [...PREMIERE_PRO].concat(newState);
         break;
@@ -35,7 +34,6 @@ export class GptService {
         break;
     }
 
-    console.log(messages);
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
       messages: messages,
