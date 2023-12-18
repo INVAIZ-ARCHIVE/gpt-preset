@@ -1,17 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AppService } from './app.service';
+import { GptService } from './gpt/gpt.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  constructor(private readonly gptService: GptService) {}
 
   @Post()
   createPreset(@Body() body) {
-    return this.appService.createPreset(body.user_input);
+    return this.gptService.createPreset(body.user_input, body.hostApplication);
   }
 }

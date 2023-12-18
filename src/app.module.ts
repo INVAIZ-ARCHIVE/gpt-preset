@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './configs/configuration';
+import { GptService } from './gpt/gpt.service';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import configuration from './configs/configuration';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, GptService],
   exports: [AppService],
 })
 export class AppModule {}
