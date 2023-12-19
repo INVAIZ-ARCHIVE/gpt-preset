@@ -6,7 +6,8 @@ export type HostApplication =
   | 'Premiere Pro'
   | 'Illustrator'
   | 'After Effects'
-  | 'InDesign';
+  | 'InDesign'
+  | 'Hangeul';
 
 export class CreatePresetDto {
   @IsString()
@@ -20,6 +21,7 @@ export class CreatePresetDto {
     'Lightroom Classic',
     'Illustrator',
     'InDesign',
+    'Hangeul',
   ])
   hostApp: HostApplication;
 }
