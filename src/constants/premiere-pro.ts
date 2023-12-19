@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const PREMIERE_PRO: ChatCompletionMessageParam[] = [
+export const premiere_messages: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

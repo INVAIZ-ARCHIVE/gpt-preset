@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
-import { PREMIERE_PRO } from '../constants/message';
+import { premiere_messages } from '../constants/premiere-pro';
 import { HostApplication } from './dto/create-preset.dto';
+import { illustrator_messages } from 'src/constants/illustrator';
+import { lightroom_messages } from './../constants/lightroom-classic';
 
 @Injectable()
 export class GptService {
@@ -24,13 +26,13 @@ export class GptService {
 
     switch (hostApp) {
       case 'Premiere Pro':
-        messages = [...PREMIERE_PRO].concat(newState);
+        messages = [...premiere_messages].concat(newState);
         break;
-      case 'Photoshop':
-        messages = [...PREMIERE_PRO].concat(newState);
+      case 'Illustrator':
+        messages = [...illustrator_messages].concat(newState);
         break;
       case 'Lightroom Classic':
-        messages = [...PREMIERE_PRO].concat(newState);
+        messages = [...lightroom_messages].concat(newState);
         break;
     }
 
