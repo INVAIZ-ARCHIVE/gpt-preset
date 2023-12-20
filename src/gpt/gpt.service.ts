@@ -8,13 +8,29 @@ import { illustrator_messages } from 'src/constants/illustrator';
 import { lightroom_messages } from './../constants/lightroom-classic';
 import { hangule_message } from 'src/constants/hangeul';
 
+export enum MessageMap {
+  PremierePro = 'Premiere Pro',
+  Illustrator = 'Illustrator',
+  LightroomClassic = 'Lightroom Classic',
+  Hangeul = 'Hangeul',
+}
+
 @Injectable()
 export class GptService {
   private readonly openai: OpenAI;
+  private readonly messageMap: Record<HostApplication, any[]>;
   constructor(private readonly configService: ConfigService) {
     this.openai = new OpenAI({
       apiKey: this.configService.get('OPENAI_API_KEY'),
     });
+    this.messageMap = {
+      [HostApplication.PremierePro]: premiere_messages,
+      [HostApplication.Illustrator]: illustrator_messages,
+      [HostApplication.LightroomClassic]: lightroom_messages,
+      [HostApplication.Hangeul]: hangule_message,
+      [HostApplication.InDesign]: hangule_message,
+      [HostApplication.AfterEffects]: hangule_message,
+    };
   }
 
   async createPreset(content: string, hostApp: HostApplication) {
@@ -23,22 +39,7 @@ export class GptService {
       content: content,
     };
 
-    let messages = [];
-
-    switch (hostApp) {
-      case 'Premiere Pro':
-        messages = [...premiere_messages].concat(chatCompletionMessageParam);
-        break;
-      case 'Illustrator':
-        messages = [...illustrator_messages].concat(chatCompletionMessageParam);
-        break;
-      case 'Lightroom Classic':
-        messages = [...lightroom_messages].concat(chatCompletionMessageParam);
-        break;
-      case 'Hangeul':
-        messages = [...hangule_message].concat(chatCompletionMessageParam);
-    }
-
+    const messages = [...this.messageMap[hostApp], chatCompletionMessageParam];
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
       messages: messages,

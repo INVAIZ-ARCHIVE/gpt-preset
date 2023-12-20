@@ -1,13 +1,13 @@
 import { IsIn, IsNotEmpty, IsString } from 'class-validator';
 
-export type HostApplication =
-  | 'Photoshop'
-  | 'Lightroom Classic'
-  | 'Premiere Pro'
-  | 'Illustrator'
-  | 'After Effects'
-  | 'InDesign'
-  | 'Hangeul';
+export enum HostApplication {
+  LightroomClassic = 'Lightroom Classic',
+  PremierePro = 'Premiere Pro',
+  Illustrator = 'Illustrator',
+  AfterEffects = 'After Effects',
+  InDesign = 'InDesign',
+  Hangeul = 'Hangeul',
+}
 
 export class CreatePresetDto {
   @IsString()
@@ -15,13 +15,6 @@ export class CreatePresetDto {
   content: string;
 
   @IsNotEmpty()
-  @IsIn([
-    'Photoshop',
-    'Premiere Pro',
-    'Lightroom Classic',
-    'Illustrator',
-    'InDesign',
-    'Hangeul',
-  ])
+  @IsIn(Object.values(HostApplication))
   hostApp: HostApplication;
 }
