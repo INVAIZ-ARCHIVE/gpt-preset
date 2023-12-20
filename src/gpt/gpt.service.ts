@@ -2,11 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
-import { premiere_messages } from '../constants/premiere-pro';
 import { HostApplication } from './dto/create-preset.dto';
-import { illustrator_messages } from 'src/constants/illustrator';
-import { lightroom_messages } from './../constants/lightroom-classic';
-import { hangule_message } from 'src/constants/hangeul';
+import messageMap from '../constants';
 
 export enum MessageMap {
   PremierePro = 'Premiere Pro',
@@ -23,14 +20,7 @@ export class GptService {
     this.openai = new OpenAI({
       apiKey: this.configService.get('OPENAI_API_KEY'),
     });
-    this.messageMap = {
-      [HostApplication.PremierePro]: premiere_messages,
-      [HostApplication.Illustrator]: illustrator_messages,
-      [HostApplication.LightroomClassic]: lightroom_messages,
-      [HostApplication.Hangeul]: hangule_message,
-      [HostApplication.InDesign]: hangule_message,
-      [HostApplication.AfterEffects]: hangule_message,
-    };
+    this.messageMap = messageMap;
   }
 
   async createPreset(content: string, hostApp: HostApplication) {

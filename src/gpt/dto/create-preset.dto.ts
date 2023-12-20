@@ -1,6 +1,7 @@
 import { IsIn, IsNotEmpty, IsString } from 'class-validator';
 
 export enum HostApplication {
+  Photoshop = 'Photoshop',
   LightroomClassic = 'Lightroom Classic',
   PremierePro = 'Premiere Pro',
   Illustrator = 'Illustrator',
