@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const lightroom_messages: ChatCompletionMessageParam[] = [
+export const w10_lightroom: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

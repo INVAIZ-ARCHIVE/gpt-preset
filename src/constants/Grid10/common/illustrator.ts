@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const illustrator_messages: ChatCompletionMessageParam[] = [
+export const c10_illustrator: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

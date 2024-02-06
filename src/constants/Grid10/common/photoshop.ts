@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const photoshop_messages: ChatCompletionMessageParam[] = [
+export const c10_photoshop: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

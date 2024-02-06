@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const hangule_message: ChatCompletionMessageParam[] = [
+export const w10_hangule: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

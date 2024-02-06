@@ -1,6 +1,6 @@
 import { ChatCompletionMessageParam } from 'openai/resources';
 
-export const indesign_messages: ChatCompletionMessageParam[] = [
+export const w10_indesign: ChatCompletionMessageParam[] = [
   {
     role: 'system',
     content:

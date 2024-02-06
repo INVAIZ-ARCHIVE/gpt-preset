@@ -3,7 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { Device, HostApplication } from './dto/create-preset.dto';
-import grid10MessageMap from '../constants/Grid10/Windows';
+import w_grid10_message_map from '../constants/Grid10';
+import Grid10MessageMap from '../constants/Grid10';
 
 export enum MessageMap {
   PremierePro = 'Premiere Pro',
@@ -32,8 +33,7 @@ export class GptService {
       content: content,
     };
 
-    this.messageMap =
-      device === Device.Grid10 ? grid10MessageMap : grid10MessageMap;
+    this.messageMap = Grid10MessageMap['windows'];
     const messages = [...this.messageMap[hostApp], chatCompletionMessageParam];
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
