@@ -10,6 +10,11 @@ export enum HostApplication {
   Hangeul = 'Hangeul',
 }
 
+export enum Device {
+  GridPro = 'GridPro',
+  Grid10 = 'Grid10',
+}
+
 export class CreatePresetDto {
   @IsString()
   @IsNotEmpty()
@@ -18,4 +23,8 @@ export class CreatePresetDto {
   @IsNotEmpty()
   @IsIn(Object.values(HostApplication))
   hostApp: HostApplication;
+
+  @IsNotEmpty()
+  @IsIn(Object.values(Device))
+  device: Device;
 }

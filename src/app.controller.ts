@@ -11,6 +11,7 @@ export class AppController {
     return this.gptService.createPreset(
       createPresetDto.content,
       createPresetDto.hostApp,
+      createPresetDto.device,
     );
   }
 }

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
-import { HostApplication } from './dto/create-preset.dto';
-import messageMap from '../constants';
+import { Device, HostApplication } from './dto/create-preset.dto';
+import grid10MessageMap from '../constants/Grid10/Windows';
 
 export enum MessageMap {
   PremierePro = 'Premiere Pro',
@@ -15,20 +15,25 @@ export enum MessageMap {
 @Injectable()
 export class GptService {
   private readonly openai: OpenAI;
-  private readonly messageMap: Record<HostApplication, any[]>;
+  private messageMap: Record<HostApplication, any[]>;
   constructor(private readonly configService: ConfigService) {
     this.openai = new OpenAI({
       apiKey: this.configService.get('OPENAI_API_KEY'),
     });
-    this.messageMap = messageMap;
   }
 
-  async createPreset(content: string, hostApp: HostApplication) {
+  async createPreset(
+    content: string,
+    hostApp: HostApplication,
+    device: Device,
+  ) {
     const chatCompletionMessageParam: ChatCompletionMessageParam = {
       role: 'user',
       content: content,
     };
 
+    this.messageMap =
+      device === Device.Grid10 ? grid10MessageMap : grid10MessageMap;
     const messages = [...this.messageMap[hostApp], chatCompletionMessageParam];
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
