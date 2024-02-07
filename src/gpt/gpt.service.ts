@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { Device, HostApplication } from './dto/create-preset.dto';
-import w_grid10_message_map from '../constants/Grid10';
 import Grid10MessageMap from '../constants/Grid10';
 
 export enum MessageMap {
