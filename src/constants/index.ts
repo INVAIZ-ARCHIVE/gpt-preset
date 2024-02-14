@@ -7,9 +7,13 @@ export interface DeviceMessageMap {
   windows: MessageMap;
   macOs: MessageMap;
 }
-
 export type MessageMap = {
-  [key in HostApplication]: ChatCompletionMessageParam[];
+  [key in Exclude<
+    HostApplication,
+    HostApplication.FinalCutPro
+  >]?: ChatCompletionMessageParam[];
+} & {
+  FinalCutPro?: ChatCompletionMessageParam[];
 };
 
 const deviceMessageMap = {

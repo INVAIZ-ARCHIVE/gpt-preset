@@ -3,13 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { Device, HostApplication } from './dto/create-preset.dto';
-import deviceMessageMap from '../constants/index';
+import deviceMessageMap, { MessageMap } from '../constants/index';
 import Grid10MessageMap from 'src/constants/Grid10';
 
 @Injectable()
 export class GptService {
   private readonly openai: OpenAI;
-  private messageMap: Record<HostApplication, any[]>;
+  private messageMap: MessageMap;
   constructor(private readonly configService: ConfigService) {
     this.openai = new OpenAI({
       apiKey: this.configService.get('OPENAI_API_KEY'),

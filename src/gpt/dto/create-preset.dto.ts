@@ -8,7 +8,12 @@ export enum HostApplication {
   AfterEffects = 'After Effects',
   InDesign = 'InDesign',
   Hangeul = 'Hangeul',
+  FinalCutPro = 'FinalCutPro',
 }
+
+export type OptinalHostApp =
+  | Exclude<HostApplication, HostApplication.FinalCutPro>
+  | undefined;
 
 export enum Device {
   GridPro = 'GridPro',

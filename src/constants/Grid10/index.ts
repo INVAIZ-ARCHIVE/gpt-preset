@@ -31,6 +31,7 @@ const m_grid10_message_map: MessageMap = {
   [HostApplication.Illustrator]: c10_illustrator,
   [HostApplication.Photoshop]: c10_photoshop,
   [HostApplication.PremierePro]: c10_premiere,
+  [HostApplication.FinalCutPro]: c10_premiere,
 };
 
 const Grid10MessageMap: DeviceMessageMap = {
