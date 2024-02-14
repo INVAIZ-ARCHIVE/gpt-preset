@@ -11,16 +11,7 @@ import { m10_after_effects } from './macOs/after-effects';
 import { m10_hanglue } from './macOs/hangeul';
 import { m10_indesign } from './macOs/indesign';
 import { m10_lightroom } from './macOs/lightroom-classic';
-import { ChatCompletionMessageParam } from 'openai/resources';
-
-interface DeviceMessageMap {
-  windows: MessageMap;
-  macOs: MessageMap;
-}
-
-type MessageMap = {
-  [key in HostApplication]: ChatCompletionMessageParam[];
-};
+import { DeviceMessageMap, MessageMap } from '..';
 
 const w_grid10_message_map: MessageMap = {
   [HostApplication.AfterEffects]: w10_after_effects,
