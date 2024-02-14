@@ -26,13 +26,14 @@ export class GptService {
     content: string,
     hostApp: HostApplication,
     device: Device,
+    os: 'windows' | 'macOs',
   ) {
     const chatCompletionMessageParam: ChatCompletionMessageParam = {
       role: 'user',
       content: content,
     };
 
-    this.messageMap = Grid10MessageMap['windows'];
+    this.messageMap = Grid10MessageMap[os];
     const messages = [...this.messageMap[hostApp], chatCompletionMessageParam];
     const response = await this.openai.chat.completions.create({
       model: 'gpt-3.5-turbo-1106',
