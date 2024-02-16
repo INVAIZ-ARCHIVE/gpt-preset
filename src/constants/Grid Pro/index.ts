@@ -9,9 +9,9 @@ import { c_pro_illustrator } from './common/illustrator';
 import { m_pro_after_effects } from './macOs/after-effects';
 import { m_pro_indesign } from './macOs/indesign';
 import { m_pro_lightroom } from './macOs/lightroom-classic';
-import { DeviceMessageMap, WindowsMessageMap } from '../index';
+import { DeviceMessageMap, MessageMap } from '../index';
 
-const w_gridpro_message_map: WindowsMessageMap = {
+const w_gridpro_message_map: MessageMap = {
   [HostApplication.AfterEffects]: w_pro_after_effects,
   [HostApplication.LightroomClassic]: w_pro_lightroom,
   [HostApplication.InDesign]: w_pro_indesign,
@@ -21,7 +21,7 @@ const w_gridpro_message_map: WindowsMessageMap = {
   [HostApplication.Hangeul]: c_pro_photoshop,
 };
 
-const m_gridpro_message_map: WindowsMessageMap = {
+const m_gridpro_message_map: MessageMap = {
   [HostApplication.AfterEffects]: m_pro_after_effects,
   [HostApplication.LightroomClassic]: m_pro_lightroom,
   [HostApplication.InDesign]: m_pro_indesign,

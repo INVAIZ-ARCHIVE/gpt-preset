@@ -12,6 +12,7 @@ export class AppController {
       createPresetDto.content,
       createPresetDto.hostApp,
       createPresetDto.device,
+      'windows',
     );
   }
 }
